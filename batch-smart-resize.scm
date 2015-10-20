@@ -4,12 +4,12 @@
     (let*
       (
         (filename (car sourceFiles))
-        (image (car (gimp-file-load 1 filename filename)))
+        (image (car (gimp-file-load RUN-NONINTERACTIVE filename filename)))
       )
-
       (gimp-image-undo-disable image)
 
-      (if (not (= (car (gimp-layer-get-mask (car (gimp-image-get-active-layer image)))) -1)) (plug-in-autocrop 1 image (car (gimp-layer-get-mask (car (gimp-image-get-active-layer image))))))  ;crop to mask if one exists
+      ;crop to mask if one exists
+      (if (not (= (car (gimp-layer-get-mask (car (gimp-image-get-active-layer image)))) -1)) (plug-in-autocrop RUN-NONINTERACTIVE image (car (gimp-layer-get-mask (car (gimp-image-get-active-layer image))))))
 
 
       ;image manipulation
@@ -32,7 +32,7 @@
             ;add background layer
             (let*
               (
-                (backgroundLayer (car (gimp-layer-new image maxWidth maxHeight 0 "Background Layer" 100 0)))  ;create background layer
+                (backgroundLayer (car (gimp-layer-new image maxWidth maxHeight RGB-IMAGE "Background Layer" 100 NORMAL-MODE)))  ;create background layer
               )
               (let*
                 (
@@ -100,7 +100,7 @@
                 ;Sub-sampling type { 0, 1, 2, 3 } 0 == 4:2:0 (chroma quartered), 1 == 4:2:2 Horizontal (chroma halved), 2 == 4:4:4 (best quality), 3 == 4:2:2 Vertical (chroma halved)
                 ;Force creation of a baseline JPEG (non-baseline JPEGs can't be read by all decoders) (TRUE/FALSE)
                 ;Interval of restart markers (in MCU rows, 0 = no restart markers)
-                ;DCT method to use { INTEGER (0), FIXED (1), FLOAT (2) }
+                ;DCT method to use {0, 1, 2} 0==integer, 1==fixed, 2==float
               (file-jpeg-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename (/ outputQuality 100) 0 TRUE TRUE "" 2 TRUE 0 0)
             )
           )
@@ -127,7 +127,7 @@
       )
       (gimp-image-delete image)
     )
-    (if (= fileCount 1) 1 (smart-resize (- fileCount 1) (cdr sourceFiles)))  ;I think this determines whether to continue the loop
+    (if (= fileCount 1) 1 (smart-resize (- fileCount 1) (cdr sourceFiles)))  ;determine whether to continue the loop
   )
  (define sourceFilesGlob (file-glob (string-append sourcePath "\\*.*") 0))  ;this may work on windows only
  (smart-resize (car sourceFilesGlob) (car (cdr sourceFilesGlob)))
