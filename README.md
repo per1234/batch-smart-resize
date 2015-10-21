@@ -19,6 +19,7 @@ At this time the script probably only works on Windows. I am hoping to add suppo
 The script dialog can be accessed at: **File > Create > batch-smart-resize**.
 - **Source Folder** - The folder that contains the source images. All files in the folder must be valid image files or the script will fail with the error: `Error: Procedure execution of gimp-file-load failed: Unknown file type`.
 - **Destination Folder** - The folder where the processed images will be saved to.
+- **Output Filename Modifier** - A string to add to the end of the output filenames.
 - **Output Type** - File type to use for the processed images.
 - **Output Quality** - Determines the compression level for JPEG Output Type. A higher value will produce better image quality and larger file size.
 - **Max Height** - The maximum height of the processed image.

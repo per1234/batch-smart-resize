@@ -1,5 +1,5 @@
 ; https://github.com/per1234/batch-smart-resize
-(define (script-fu-batch-smart-resize sourcePath destinationPath outputType outputQuality maxHeight maxWidth pad padColor)
+(define (script-fu-batch-smart-resize sourcePath destinationPath filenameModifier outputType outputQuality maxHeight maxWidth pad padColor)
   (define (smart-resize fileCount sourceFiles)
     (let*
       (
@@ -55,7 +55,7 @@
       (let*
         (
           ;format filename
-          (outputFilenameNoExtension (string-append (string-append destinationPath "/") (unbreakupstr (reverse (cdr (reverse (strbreakup (car (reverse (strbreakup filename "\\"))) ".")))) ".")))  ;strip the extension(from http://stackoverflow.com/questions/1386293/how-to-parse-out-base-file-name-using-script-fu) - this probably only works on windows
+          (outputFilenameNoExtension (string-append (string-append destinationPath "/") (unbreakupstr (reverse (cdr (reverse (strbreakup (car (reverse (strbreakup filename "\\"))) ".")))) ".") filenameModifier))  ;strip the extension(from http://stackoverflow.com/questions/1386293/how-to-parse-out-base-file-name-using-script-fu) - this probably only works on windows
         )
         ;save file
         (cond
@@ -150,6 +150,7 @@
   SF-VALUE  "Max Width" "1500"  ;maxWidth
   SF-TOGGLE  "Pad" FALSE  ;pad
   SF-COLOR  "Padding Color" "white"  ;padColor
+  SF-STRING "Output Filename Modifier(appended)" ""  ;filenameModifier
 )
 
 (script-fu-menu-register "script-fu-batch-smart-resize"
