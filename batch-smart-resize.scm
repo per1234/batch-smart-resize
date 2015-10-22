@@ -1,5 +1,5 @@
 ; https://github.com/per1234/batch-smart-resize
-(define (script-fu-batch-smart-resize sourcePath destinationPath filenameModifier outputType outputQuality maxHeight maxWidth pad padColor)
+(define (script-fu-batch-smart-resize sourcePath destinationPath filenameModifier outputType outputQuality maxWidth maxHeight pad padColor)
   (define (smart-resize fileCount sourceFiles)
     (let*
       (
@@ -146,11 +146,11 @@
   SF-DIRNAME  "Destination Folder" ""  ;destinationPath
   SF-OPTION  "Output Type" '("PNG" "JPEG" "GIF")  ;outputType
   SF-VALUE  "Output Quality(JPEG only) 0-100" "90"  ;outputQuality
-  SF-VALUE  "Max Height" "1500"  ;maxHeight
-  SF-VALUE  "Max Width" "1500"  ;maxWidth
   SF-TOGGLE  "Pad" FALSE  ;pad
   SF-COLOR  "Padding Color" "white"  ;padColor
   SF-STRING "Output Filename Modifier(appended)" ""  ;filenameModifier
+  SF-VALUE "Max Width" "1500"  ;maxWidth
+  SF-VALUE "Max Height" "1500"  ;maxHeight
 )
 
 (script-fu-menu-register "script-fu-batch-smart-resize"

@@ -22,7 +22,7 @@ The script dialog can be accessed at: **File > Create > batch-smart-resize**.
 - **Output Filename Modifier** - A string to add to the end of the output filenames.
 - **Output Type** - File type to use for the processed images.
 - **Output Quality** - Determines the compression level for JPEG Output Type. A higher value will produce better image quality and larger file size.
-- **Max Height** - The maximum height of the processed image.
 - **Max Width** - The maximum width of the processed image.
+- **Max Height** - The maximum height of the processed image.
 - **Pad** - If this box is checked then the script will add background to size the image to the full maximum dimensions. This can be useful to avoid having sites such as Etsy and Handmade at Amazon crop your image thumbnails to an arbitrary aspect ratio.
 - **Padding Color** - Color used for padding if enabled.
