@@ -129,8 +129,11 @@
     )
     (if (= fileCount 1) 1 (smart-resize (- fileCount 1) (cdr sourceFiles)))  ;determine whether to continue the loop
   )
- (define sourceFilesGlob (file-glob (string-append sourcePath "\\*.*") 0))  ;this may work on windows only
- (smart-resize (car sourceFilesGlob) (car (cdr sourceFilesGlob)))
+  (define sourceFilesGlob (file-glob (string-append sourcePath "\\*.*") 0))  ;this may work on windows only
+  (if (pair? (car (cdr sourceFilesGlob)))  ;check for valid source folder(if this script is called from another script they may have passed an invalid path and it's much more helpful to return a meaningful error message)
+    (smart-resize (car sourceFilesGlob) (car (cdr sourceFilesGlob)))
+    (error (string-append "Invalid Source Folder" sourcePath))
+  )
 )
 
 ;dialog
