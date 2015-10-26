@@ -138,23 +138,23 @@
 
 ;dialog
 (script-fu-register
-  "script-fu-batch-smart-resize"  ;func name
+  "script-fu-batch-smart-resize"  ;function name
   "batch-smart-resize"  ;menu label
   "Crop to layer mask, resize within maximum dimensions, and pad to max dimensions(optional)"  ;description
   "per1234"  ;author
   ""  ;copyright notice
   "2015-10-02"  ;date created
   ""  ;image type
-  SF-DIRNAME  "Source Folder" ""  ;sourcePath
-  SF-DIRNAME  "Destination Folder" ""  ;destinationPath
-  SF-OPTION  "Output Type" '("PNG" "JPEG" "GIF")  ;outputType
-  SF-VALUE  "Output Quality(JPEG only) 0-100" "90"  ;outputQuality
-  SF-TOGGLE  "Pad" FALSE  ;pad
-  SF-COLOR  "Padding Color" "white"  ;padColor
+  SF-DIRNAME "Source Folder" ""  ;sourcePath
+  SF-DIRNAME "Destination Folder" ""  ;destinationPath
   SF-STRING "Output Filename Modifier(appended)" ""  ;filenameModifier
+  SF-OPTION "Output Type" '("PNG" "JPEG" "GIF")  ;outputType
+  SF-VALUE "Output Quality(JPEG only) 0-100" "90"  ;outputQuality
   SF-VALUE "Max Width" "1500"  ;maxWidth
   SF-VALUE "Max Height" "1500"  ;maxHeight
+  SF-TOGGLE "Pad" FALSE  ;pad
+  SF-COLOR "Padding Color" "white"  ;padColor
 )
 
 (script-fu-menu-register "script-fu-batch-smart-resize"
-                         "<Image>/File/Create") ;menu location
+                         "<Image>/File/Create")  ;menu location
