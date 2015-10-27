@@ -5,8 +5,6 @@ batch-smart-resize
 - Crops to layer mask.
 - Optional padding in any color to the full maximum dimensions.
 
-At this time the script probably only works on Windows. I am hoping to add support for all operating systems soon.
-
 
 #### Installation
 - Download https://github.com/per1234/batch-smart-resize/archive/master.zip

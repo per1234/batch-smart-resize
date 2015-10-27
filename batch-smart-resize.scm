@@ -51,12 +51,34 @@
       (gimp-image-flatten image)  ;flatten the layers
 
 
-      ;save
       (let*
         (
-          ;format filename
-          (outputFilenameNoExtension (string-append (string-append destinationPath "/") (unbreakupstr (reverse (cdr (reverse (strbreakup (car (reverse (strbreakup filename "\\"))) ".")))) ".") filenameModifier))  ;strip the extension(from http://stackoverflow.com/questions/1386293/how-to-parse-out-base-file-name-using-script-fu) - this probably only works on windows
+          ;format filename - strip source extension(from http://stackoverflow.com/questions/1386293/how-to-parse-out-base-file-name-using-script-fu), add filename modifier and destination path
+          (outputFilenameNoExtension
+            (string-append
+              (string-append destinationPath "/")
+              (unbreakupstr
+                (reverse
+                  (cdr
+                    (reverse
+                      (strbreakup
+                        (car
+                          (reverse
+                            (strbreakup filename (if isLinux "/" "\\"))
+                          )
+                        )
+                        "."
+                      )
+                    )
+                  )
+                )
+                "."
+              )
+              filenameModifier
+            )
+          )
         )
+
         ;save file
         (cond
           ((= outputType 0)
@@ -129,10 +151,18 @@
     )
     (if (= fileCount 1) 1 (smart-resize (- fileCount 1) (cdr sourceFiles)))  ;determine whether to continue the loop
   )
-  (define sourceFilesGlob (file-glob (string-append sourcePath "\\*.*") 0))  ;this may work on windows only
+
+  ;detect OS type(from http://www.gimp.org/tutorials/AutomatedJpgToXcf/)
+  (define isLinux
+    (>
+      (length (strbreakup sourcePath "/" ) )  ;returns the number of pieces the string is broken into
+      (length (strbreakup sourcePath "\\" ) )
+    )
+  )
+  (define sourceFilesGlob (file-glob (if isLinux (string-append sourcePath "/*.*") (string-append sourcePath "\\*.*")) 0))
   (if (pair? (car (cdr sourceFilesGlob)))  ;check for valid source folder(if this script is called from another script they may have passed an invalid path and it's much more helpful to return a meaningful error message)
     (smart-resize (car sourceFilesGlob) (car (cdr sourceFilesGlob)))
-    (error (string-append "Invalid Source Folder" sourcePath))
+    (error (string-append "Invalid Source Folder " sourcePath))
   )
 )
 
