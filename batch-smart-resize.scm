@@ -1,5 +1,5 @@
 ; https://github.com/per1234/batch-smart-resize
-(define (script-fu-batch-smart-resize sourcePath destinationPath filenameModifier outputType outputQuality maxWidth maxHeight pad padColor)
+(define (script-fu-batch-smart-resize sourcePath destinationPath filenameModifier outputType outputQuality maxWidth maxHeight pad padColor . JPEGDCT)
   (define (smart-resize fileCount sourceFiles)
     (let*
       (
@@ -123,7 +123,7 @@
                 ;Force creation of a baseline JPEG (non-baseline JPEGs can't be read by all decoders) (TRUE/FALSE)
                 ;Interval of restart markers (in MCU rows, 0 = no restart markers)
                 ;DCT method to use {0, 1, 2} 0==integer, 1==fixed, 2==float
-              (file-jpeg-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename (/ outputQuality 100) 0 TRUE TRUE "" 2 TRUE 0 0)
+              (file-jpeg-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename (/ outputQuality 100) 0 TRUE TRUE "" 2 TRUE 0 (if (null? JPEGDCT) 0 (car JPEGDCT)))
             )
           )
           (else
