@@ -16,13 +16,17 @@
       (let*
         (
           ;get cropped source image dimensions
-          (sourceHeight (car (gimp-image-height image)))  ;declare local sourceHeight variable
           (sourceWidth (car (gimp-image-width image)))
+          (sourceHeight (car (gimp-image-height image)))
 
-          (outputWidth (if (< (/ sourceWidth sourceHeight) (/ maxWidth maxHeight)) (* (/ maxHeight sourceHeight) sourceWidth) maxWidth))
-          (outputHeight (if (> (/ sourceWidth sourceHeight) (/ maxWidth maxHeight)) (* (/ maxWidth sourceWidth) sourceHeight) maxHeight))
+          ;don't resize image to larger than original dimensions
+          (outputMaxWidth (if (< sourceWidth maxWidth) sourceWidth maxWidth))
+          (outputMaxHeight (if (< sourceHeight maxHeight) sourceHeight maxHeight))
+
+          (outputWidth (if (< (/ sourceWidth sourceHeight) (/ outputMaxWidth outputMaxHeight)) (* (/ outputMaxHeight sourceHeight) sourceWidth) outputMaxWidth))
+          (outputHeight (if (> (/ sourceWidth sourceHeight) (/ outputMaxWidth outputMaxHeight)) (* (/ outputMaxWidth sourceWidth) sourceHeight) outputMaxHeight))
         )
-        (gimp-image-scale image outputWidth outputHeight)  ;scale image(must be inside the scope of the let* to access outputWidth/outputHeight)
+        (gimp-image-scale image outputWidth outputHeight)  ;scale image to the output dimensions
 
         ;pad
         (if (= pad TRUE)
