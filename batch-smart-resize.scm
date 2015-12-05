@@ -43,7 +43,7 @@
                   (backgroundColor (car (gimp-context-get-background)))  ;save the current background color so it can be reset after the padding is finished
                 )
                 (gimp-context-set-background padColor)  ;set background color to the padColor
-                (gimp-drawable-fill backgroundLayer FILL-BACKGROUND)  ;fill the background layer with the background color
+                (gimp-drawable-fill backgroundLayer 1)  ;Fill the background layer with the background color. I have to use 1 instead of FILL-BACKGROUND because GIMP 2.8 uses BACKGROUND-FILL.
                 (gimp-context-set-background backgroundColor)  ;reset the background color to the previous value
               )
               (gimp-image-insert-layer image backgroundLayer 0 1)  ;add background layer to image
