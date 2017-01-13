@@ -25,3 +25,7 @@ The script dialog can be accessed at: **File > Create > batch-smart-resize**.
 - **Pad** - If this box is checked then the script will add background to size the image to the full maximum dimensions. This can be useful to avoid having sites such as Etsy and Handmade at Amazon crop your image thumbnails to an arbitrary aspect ratio.
 - **Padding Color** - Color used for padding if enabled.
 - **JPEG DCT Method** - This parameter can only be set by scripts that call script-fu-batch-smart-resize. 0==integer, 1==fixed, 2==float. The default value is 0. For details on the DCT methods see http://docs.gimp.org/en/gimp-images-out.html#file-jpeg-save.
+
+
+#### Contributing
+Pull requests or issue reports are welcome! Please see the [contribution rules](https://github.com/per1234/batch-smart-resize/blob/master/CONTRIBUTING.md) for instructions.
