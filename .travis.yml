@@ -19,6 +19,11 @@ script:
   # Check for files that don't end in a newline (https://stackoverflow.com/a/25686825)
   - find . -path ./.git -prune -o -type f -print0 | xargs -0 -L1 bash -c 'if test "$(grep --files-with-matches --binary-files=without-match --max-count=1 --regexp='.*' "$0")" && test "$(tail --bytes=1 "$0")"; then echo "No new line at end of $0."; false; fi'
 
+  # Check for typos
+  - git clone https://github.com/ss18/grep-typos.git "${HOME}/scripts/grep-typos"
+  - find "$TRAVIS_BUILD_DIR" -path "${TRAVIS_BUILD_DIR}/.git" -prune -or -type f -print0 | xargs --null --max-args=1 bash "${HOME}/scripts/grep-typos/grep_typos.sh" "$0"
+  - rm "${HOME}/scripts/grep-typos" --recursive --force
+
 
 notifications:
   email:
