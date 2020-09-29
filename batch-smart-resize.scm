@@ -154,7 +154,6 @@
               (
                 (outputFilename (string-append outputFilenameNoExtension ".tga"))  ;add the new extension
               )
-              (gimp-image-convert-indexed image 1 0 256 TRUE TRUE "")
               ;file-gif-save parameters
                 ;The run mode(RUN-INTERACTIVE(0), RUN-NONINTERACTIVE(1))
                 ;Input image
