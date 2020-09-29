@@ -160,9 +160,9 @@
                 ;Drawable to save
                 ;filename
                 ;raw-filename - this doesn't appear to do anything
-                ;whether to use rle compression (1 for yes, 0 for no)
+                ;whether to use rle compression (TRUE/FALSE?)
                 ;image origin (0 = top-left, 1 = bottom-left)
-              (file-tga-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename 0 0)
+              (file-tga-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename FALSE 0)
             )
           )
         )
