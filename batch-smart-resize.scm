@@ -182,7 +182,7 @@
   SF-DIRNAME "Source Folder" ""  ;sourcePath
   SF-DIRNAME "Destination Folder" ""  ;destinationPath
   SF-STRING "Output Filename Modifier(appended)" ""  ;filenameModifier
-  SF-OPTION "Output Type" '("PNG" "JPEG" "GIF")  ;outputType
+  SF-OPTION "Output Type" '("PNG" "JPEG" "GIF" "TGA")  ;outputType
   SF-VALUE "Output Quality(JPEG only) 0-100" "90"  ;outputQuality
   SF-VALUE "Max Width" "1500"  ;maxWidth
   SF-VALUE "Max Height" "1500"  ;maxHeight
