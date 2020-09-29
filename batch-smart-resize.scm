@@ -152,7 +152,7 @@
 		  (else
             (let*
               (
-                (outputFilename (string-append outputFilenameNoExtension ".gif"))  ;add the new extension
+                (outputFilename (string-append outputFilenameNoExtension ".tga"))  ;add the new extension
               )
               (gimp-image-convert-indexed image 1 0 256 TRUE TRUE "")
               ;file-gif-save parameters
