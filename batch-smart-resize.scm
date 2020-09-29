@@ -162,7 +162,7 @@
                 ;raw-filename - this doesn't appear to do anything
                 ;whether to use rle compression (1 for yes, 0 for no)
                 ;image origin (0 = top-left, 1 = bottom-left)
-              (file-gif-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename FALSE FALSE 0 0)
+              (file-tga-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename 0 0)
             )
           )
         )
