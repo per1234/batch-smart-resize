@@ -49,10 +49,11 @@
               (gimp-image-insert-layer image backgroundLayer 0 1)  ;add background layer to image
             )
           )
+		  (gimp-image-flatten image)  ;flatten the layers
         )
       )
 
-      (gimp-image-flatten image)  ;flatten the layers
+      
 
 
       (let*
