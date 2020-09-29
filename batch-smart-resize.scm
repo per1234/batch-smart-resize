@@ -154,16 +154,14 @@
               (
                 (outputFilename (string-append outputFilenameNoExtension ".tga"))  ;add the new extension
               )
-              ;file-gif-save parameters
+              ;file-tga-save parameters
                 ;The run mode(RUN-INTERACTIVE(0), RUN-NONINTERACTIVE(1))
                 ;Input image
                 ;Drawable to save
                 ;filename
                 ;raw-filename - this doesn't appear to do anything
-                ;Try to save as interlaced(TRUE/FALSE?)
-                ;(animated gif) loop infinitely(TRUE/FALSE?)
-                ;(animated gif) Default delay between frames in milliseconds
-                ;(animated gif) Default disposal type (0=`don't care`, 1=combine, 2=replace)
+                ;whether to use rle compression (1 for yes, 0 for no)
+                ;image origin (0 = top-left, 1 = bottom-left)
               (file-gif-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename FALSE FALSE 0 0)
             )
           )
