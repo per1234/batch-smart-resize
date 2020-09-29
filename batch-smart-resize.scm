@@ -130,7 +130,26 @@
               (file-jpeg-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename (/ outputQuality 100) 0 TRUE TRUE "" 2 TRUE 0 (if (null? JPEGDCT) 0 (car JPEGDCT)))
             )
           )
-          (else
+          ((= outputType 2)
+            (let*
+              (
+                (outputFilename (string-append outputFilenameNoExtension ".gif"))  ;add the new extension
+              )
+              (gimp-image-convert-indexed image 1 0 256 TRUE TRUE "")
+              ;file-gif-save parameters
+                ;The run mode(RUN-INTERACTIVE(0), RUN-NONINTERACTIVE(1))
+                ;Input image
+                ;Drawable to save
+                ;filename
+                ;raw-filename - this doesn't appear to do anything
+                ;Try to save as interlaced(TRUE/FALSE?)
+                ;(animated gif) loop infinitely(TRUE/FALSE?)
+                ;(animated gif) Default delay between frames in milliseconds
+                ;(animated gif) Default disposal type (0=`don't care`, 1=combine, 2=replace)
+              (file-gif-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename FALSE FALSE 0 0)
+            )
+          )
+		  (else
             (let*
               (
                 (outputFilename (string-append outputFilenameNoExtension ".gif"))  ;add the new extension
