@@ -1,20 +1,23 @@
-batch-smart-resize
-==========
+# batch-smart-resize
+
 [GIMP](http://gimp.org) script-fu for batch resizing images.
+
 - Maximum height and width can be specified.
 - Crops to layer mask.
 - Optional padding in any color to the full maximum dimensions.
 
-
 #### Installation
+
 - Download https://github.com/per1234/batch-smart-resize/archive/master.zip
 - Unzip and move the file batch-smart-resize.scm to your GIMP scripts folder. You can find the location of the scripts folder by going to **Edit > Preferences > Folders > Scripts**.
 - If GIMP is running click **Filters > Script-Fu > Refresh Scripts**.
 
-
 <a id="usage"></a>
+
 #### Usage
+
 The script dialog can be accessed at: **File > Create > batch-smart-resize**.
+
 - **Source Folder** - The folder that contains the source images. All files in the folder must be valid image files or the script will fail with the error: `Error: Procedure execution of gimp-file-load failed: Unknown file type`.
 - **Destination Folder** - The folder where the processed images will be saved to.
 - **Output Filename Modifier** - A string to add to the end of the output filenames.
@@ -26,6 +29,6 @@ The script dialog can be accessed at: **File > Create > batch-smart-resize**.
 - **Padding Color** - Color used for padding if enabled.
 - **JPEG DCT Method** - This parameter can only be set by scripts that call script-fu-batch-smart-resize. 0==integer, 1==fixed, 2==float. The default value is 0. For details on the DCT methods see http://docs.gimp.org/en/gimp-images-out.html#file-jpeg-save.
 
-
 #### Contributing
+
 Pull requests or issue reports are welcome! Please see the [contribution rules](https://github.com/per1234/batch-smart-resize/blob/master/.github/CONTRIBUTING.md) for instructions.
