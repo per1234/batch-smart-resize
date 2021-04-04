@@ -48,11 +48,12 @@
               )
               (gimp-image-insert-layer image backgroundLayer 0 1)  ;add background layer to image
             )
+            (gimp-image-flatten image)  ;flatten the layers
           )
         )
       )
 
-      (gimp-image-flatten image)  ;flatten the layers
+      
 
 
       (let*
@@ -130,7 +131,7 @@
               (file-jpeg-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename (/ outputQuality 100) 0 TRUE TRUE "" 2 TRUE 0 (if (null? JPEGDCT) 0 (car JPEGDCT)))
             )
           )
-          (else
+          ((= outputType 2)
             (let*
               (
                 (outputFilename (string-append outputFilenameNoExtension ".gif"))  ;add the new extension
@@ -147,6 +148,22 @@
                 ;(animated gif) Default delay between frames in milliseconds
                 ;(animated gif) Default disposal type (0=`don't care`, 1=combine, 2=replace)
               (file-gif-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename FALSE FALSE 0 0)
+            )
+          )
+		  (else
+            (let*
+              (
+                (outputFilename (string-append outputFilenameNoExtension ".tga"))  ;add the new extension
+              )
+              ;file-tga-save parameters
+                ;The run mode(RUN-INTERACTIVE(0), RUN-NONINTERACTIVE(1))
+                ;Input image
+                ;Drawable to save
+                ;filename
+                ;raw-filename - this doesn't appear to do anything
+                ;whether to use rle compression (TRUE/FALSE?)
+                ;image origin (0 = top-left, 1 = bottom-left)
+              (file-tga-save RUN-NONINTERACTIVE image (car (gimp-image-get-active-drawable image)) outputFilename outputFilename FALSE 0)
             )
           )
         )
@@ -182,7 +199,7 @@
   SF-DIRNAME "Source Folder" ""  ;sourcePath
   SF-DIRNAME "Destination Folder" ""  ;destinationPath
   SF-STRING "Output Filename Modifier(appended)" ""  ;filenameModifier
-  SF-OPTION "Output Type" '("PNG" "JPEG" "GIF")  ;outputType
+  SF-OPTION "Output Type" '("PNG" "JPEG" "GIF" "TGA")  ;outputType
   SF-VALUE "Output Quality(JPEG only) 0-100" "90"  ;outputQuality
   SF-VALUE "Max Width" "1500"  ;maxWidth
   SF-VALUE "Max Height" "1500"  ;maxHeight
